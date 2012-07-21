@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="0" passed="0">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="30263" started-at="2012-05-13T08:59:56Z" finished-at="2012-05-13T09:00:26Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="30263" started-at="2012-05-13T08:59:56Z" finished-at="2012-05-13T09:00:26Z">
+      <class name="org.qainfolabs.behaviour.selenium.TestBizFabrik">
+        <test-method status="PASS" signature="createBrowser()[pri:0, instance:org.qainfolabs.behaviour.selenium.TestBizFabrik@eb017e]" name="createBrowser" is-config="true" duration-ms="16726" started-at="2012-05-13T08:59:39Z" finished-at="2012-05-13T08:59:56Z">
+        </test-method> <!-- createBrowser -->
+        <test-method status="PASS" signature="login()[pri:0, instance:org.qainfolabs.behaviour.selenium.TestBizFabrik@eb017e]" name="login" is-config="true" duration-ms="30251" started-at="2012-05-13T08:59:56Z" finished-at="2012-05-13T09:00:26Z">
+        </test-method> <!-- login -->
+      </class> <!-- org.qainfolabs.behaviour.selenium.TestBizFabrik -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
