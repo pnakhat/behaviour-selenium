@@ -44,7 +44,7 @@ public class Command {
 	}
 	
 	public String getData(){
-		return getData().trim();
+		return this.data.trim();
 	}
 	
 	public String getObject(){
