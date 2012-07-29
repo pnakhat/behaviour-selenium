@@ -1,5 +1,6 @@
 package org.qainfolabs.behaviour.executor;
 
+import org.apache.commons.lang.StringUtils;
 import org.qainfolabs.behaviour.webdriver.WebDriverHelper;
 
 public class Command {
@@ -10,9 +11,12 @@ public class Command {
 	protected String object;
 	protected String[] stepArray;
 
-	public Command(String step) {
-		this.step = step;
-		stepArray = step.split(" ");
+	//setText "IBM" name=q
+
+	public Command(String lowLevelStep) {
+		this.step = lowLevelStep;
+		System.setProperty("delim", "|");
+		stepArray = lowLevelStep.split(",");
 		setAction();
 		setObject();
 		setData();
@@ -40,7 +44,7 @@ public class Command {
 	}
 	
 	public String getData(){
-		return this.data;
+		return getData().trim();
 	}
 	
 	public String getObject(){
@@ -49,10 +53,12 @@ public class Command {
 
 
 	public void exeute() {
-		System.out.println(getAction());
-		System.out.println(getData());
-		System.out.println(getObject());
-		//WebDriverHelper helper = new WebDriverHelper();
+		System.out.println("I am action " + getAction());
+		System.out.println("I am Data " + getData());
+		System.out.println("I am UI Object " + getObject());
+		WebDriverHelper helper = new WebDriverHelper();
+		helper.execute(getAction() , getData(), getObject());
+		
 	}
 	
 	 

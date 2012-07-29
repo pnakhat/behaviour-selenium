@@ -29,7 +29,7 @@ public class StepExecutor {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println(lowLevelSteps);
+			System.out.println("Low level step " + lowLevelSteps);
 		}
 	}
 

@@ -29,7 +29,7 @@ public class LowLevelDefinotion {
 				 matchStart = true;
 			}
 			
-			if(matchStart){
+			if(matchStart && (!(startLine == lr.getLineNumber()))){
 				lowLevelSteps.add(line);
 			}
 			

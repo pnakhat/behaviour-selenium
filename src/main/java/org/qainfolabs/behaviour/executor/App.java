@@ -1,12 +1,10 @@
 package org.qainfolabs.behaviour.executor;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.qainfolabs.behaviour.selenium.utils.ScenarioExtractor;
 import org.qainfolabs.behaviour.selenium.utils.StoryReader;
 
