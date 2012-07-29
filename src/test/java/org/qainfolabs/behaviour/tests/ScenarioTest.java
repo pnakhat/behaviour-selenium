@@ -31,7 +31,7 @@ public class ScenarioTest {
 	//test to determine number of files in current path
 	@Test
 	public void testScenarioExtractor(){		
-		StoryReader oStoryReader = new StoryReader("src/test/java/org/qainfolabs/behaviour/tests/resource");
+		StoryReader oStoryReader = new StoryReader("src/test/java/org/qainfolabs/tests/core/resource/");
 		List<File> testScenario = oStoryReader.getAllStories();		 
 		Assert.assertEquals(testScenario.size(), 1);
 	}
@@ -39,7 +39,7 @@ public class ScenarioTest {
 	//test to determine number of scenarios in a file
 		@Test
 		public void testScenarioCount() throws IOException{		
-			StoryReader oStoryReader = new StoryReader("src/test/java/org/qainfolabs/behaviour/tests/resource");
+			StoryReader oStoryReader = new StoryReader("src/test/java/org/qainfolabs/tests/core/resource");
 			ScenarioExtractor oSextractor = new ScenarioExtractor();
 			List<File> testScenario = oStoryReader.getAllStories();	
 			List<Scenario> scenarios = oSextractor.getAllScenarios(testScenario.get(0));
