@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Scenario {
 	
-	List<String> scenarioSteps;
+	List<String> scenarioSteps = new ArrayList<String>();
 	
 	public void readSteps(List<String> scenarioSteps){
 		this.scenarioSteps = scenarioSteps;

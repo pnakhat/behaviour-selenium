@@ -56,8 +56,8 @@ public class Command {
 		System.out.println("I am action " + getAction());
 		System.out.println("I am Data " + getData());
 		System.out.println("I am UI Object " + getObject());
-		WebDriverHelper helper = new WebDriverHelper();
-		helper.execute(getAction() , getData(), getObject());
+		//WebDriverHelper helper = new WebDriverHelper();
+		//helper.execute(getAction() , getData(), getObject());
 		
 	}
 	
