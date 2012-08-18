@@ -12,6 +12,7 @@ public class TestCommand {
 		String testString = "open,\"http://www.google.co.uk\"";
 		Command cm = new Command(testString);
 		Assert.assertEquals(cm.getAction(), "open");
+		//
 	}
 
 }
