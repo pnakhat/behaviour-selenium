@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.qainfolabs.behaviour.executor.Scenario;
+import org.qainfolabs.behaviour.executor.Step;
 
 public class ScenarioExtractor {
 
@@ -14,24 +15,24 @@ public class ScenarioExtractor {
 		ReadFileInBuffer rf = new ReadFileInBuffer();
     	BufferedReader bf = rf.readFile(file);
 		String line;
-		List<String> scenarioSteps = null;
+		List<Step> scenarioSteps = null;
 		List<Scenario> scenarios = new ArrayList<Scenario>();
 		Scenario scn = null;
 		boolean foundScenarioStart = false;
 		while((line = bf.readLine())!=null){
 			if(line.contains("Scenario") || line.contains("End Scenario")){
+				foundScenarioStart = true;
 				if(line.contains("End Scenario")){
 					scn.readSteps(scenarioSteps);
 					scenarios.add(scn);
 					System.out.println("All steps" + scn.allSteps().toString());
 				}
-				foundScenarioStart = true;
 				scn = new Scenario();
-				scenarioSteps = new ArrayList<String>();
+				scenarioSteps = new ArrayList<Step>();
 			}
 			
 			if(foundScenarioStart){
-				scenarioSteps.add(line);
+				scenarioSteps.add(new Step(line));
 			}
 			
 			

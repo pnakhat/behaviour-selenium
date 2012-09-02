@@ -13,14 +13,13 @@ public class LowLevelDefinotion {
 	
 	
 	public LowLevelDefinotion() {
-		this.lowLevelSteps = new ArrayList<String>();
 	}
 
 	public List<String> getDefinitionOfStep(String step, File file) throws IOException {
+		this.lowLevelSteps = new ArrayList<String>();
 		String stepToBeMatched = "Match \""+step +"\"";
 		LineNumberReader lr = new LineNumberReader(new FileReader(file));
 		int startLine = 0;
-		int endLine = 0;
 		boolean matchStart = false;
 		String line;
 		while((line = lr.readLine())!=null){
@@ -34,7 +33,6 @@ public class LowLevelDefinotion {
 			}
 			
 			if((line.equals("End Match")) && matchStart == true){
-				endLine = lr.getLineNumber();
 				matchStart = false;
 				//readMatchedSteps(startLine, endLine, lr);
 			}

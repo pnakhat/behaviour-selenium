@@ -1,6 +1,7 @@
 package org.qainfolabs.behaviour.executor;
 
 import org.apache.commons.lang.StringUtils;
+import org.qainfolabs.behaviour.webdriver.StaticWebDriver;
 import org.qainfolabs.behaviour.webdriver.WebDriverHelper;
 
 public class Command {
@@ -55,9 +56,9 @@ public class Command {
 	public void exeute() {
 		System.out.println("I am action " + getAction());
 		System.out.println("I am Data " + getData());
-		System.out.println("I am UI Object " + getObject());
-		//WebDriverHelper helper = new WebDriverHelper();
-		//helper.execute(getAction() , getData(), getObject());
+		System.out.println("I am UI Object " + getObject());		
+		WebDriverHelper helper = new WebDriverHelper(StaticWebDriver.getDriver());
+		helper.execute(getAction() , getData(), getObject());
 		
 	}
 	

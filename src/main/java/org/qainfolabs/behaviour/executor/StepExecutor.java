@@ -16,15 +16,17 @@ public class StepExecutor {
 	}
 
 	public void executeStep(String step) {
-		compileStep(step);
+		compileAndExecuteStep(step);
 	}
 
-	private void compileStep(String step) {
+	private void compileAndExecuteStep(String step) {
 		if(checkIgnorableList(step)){
 			List<String> lowLevelSteps = null;
 			try {
 				lowLevelSteps = stepDefinition.getStepDefinition(step);
-				takeActionOnSteps(lowLevelSteps);
+				if(lowLevelSteps.size()>0){
+					takeActionOnSteps(lowLevelSteps);
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

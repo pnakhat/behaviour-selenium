@@ -1,5 +1,5 @@
 Match "Given I do something"
-open,http://www.google.com,
-setText,"IBM",name=q
+open,http://www.etsy.com,
+setText,Jeans,id=search-query
 End Match
 

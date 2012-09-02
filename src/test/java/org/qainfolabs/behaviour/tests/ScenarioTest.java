@@ -1,6 +1,7 @@
 package org.qainfolabs.behaviour.tests;
 
 import org.qainfolabs.behaviour.executor.Scenario;
+import org.qainfolabs.behaviour.executor.Step;
 import org.qainfolabs.behaviour.selenium.utils.StoryReader;
 import org.qainfolabs.behaviour.selenium.utils.ScenarioExtractor;
 import org.testng.Assert;
@@ -17,13 +18,13 @@ public class ScenarioTest {
 	@Test
 	public void testScenario(){
 		Scenario oScenario = new Scenario();
-		ArrayList<String> testScenario = new ArrayList<String>();
-		testScenario.add("Scenario:");
-		testScenario.add("Given I do something");
-		testScenario.add("When I do something");
-		testScenario.add("End Scenario:");
+		List<Step> testScenario = new ArrayList<Step>();
+		testScenario.add(new Step("Scenario:"));
+		testScenario.add(new Step("Given I do something"));
+		testScenario.add(new Step("When I do something"));
+		testScenario.add(new Step("End Scenario:"));
 		oScenario.readSteps(testScenario);
-		List<String> outScenario = oScenario.allSteps(); 
+		List<Step> outScenario = oScenario.allSteps(); 
 		Assert.assertEquals(outScenario.size(), 4);
 	}	
 	

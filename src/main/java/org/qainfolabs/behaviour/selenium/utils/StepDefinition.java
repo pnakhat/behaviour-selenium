@@ -15,6 +15,7 @@ public class StepDefinition {
 
 	public List<String> getStepDefinition(String step) throws IOException {
 		File stepDefFile = new File("src/main/scenarios/stepDef.def");
+		 System.out.println("Matching step............... " + step);
 			List<String> lowLevelSteps = lowLevelDefinition.getDefinitionOfStep(step,stepDefFile);
 			// TODO Auto-generated catch block
 		return lowLevelSteps;

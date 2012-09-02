@@ -5,14 +5,18 @@ import java.util.List;
 
 public class Scenario {
 	
-	List<String> scenarioSteps = new ArrayList<String>();
-	
-	public void readSteps(List<String> scenarioSteps){
-		this.scenarioSteps = scenarioSteps;
+	List<Step> scenarioSteps;
+	public Scenario(){
+		this.scenarioSteps = new ArrayList<Step>();
 	}
 	
 	
-	public List<String> allSteps(){
+	public void readSteps(List<Step> scenarioSteps){
+			this.scenarioSteps.addAll(scenarioSteps);
+	}
+	
+	
+	public List<Step> allSteps(){
 		return scenarioSteps;
 	}
 
