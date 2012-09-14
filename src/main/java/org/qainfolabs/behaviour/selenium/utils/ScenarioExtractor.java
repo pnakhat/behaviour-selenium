@@ -37,7 +37,6 @@ public class ScenarioExtractor {
 			
 			
     	}
-		System.out.println("Number of scenarios in file" + file.getName() + scenarios.size());
 		return scenarios;
 	}
 
