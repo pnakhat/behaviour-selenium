@@ -21,7 +21,7 @@ public class StaticWebDriver {
 	}
 	
 	private static void get() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub - Changed 
 		
 	}
 
