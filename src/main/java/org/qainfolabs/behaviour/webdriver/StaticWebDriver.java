@@ -2,6 +2,8 @@ package org.qainfolabs.behaviour.webdriver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.safari.SafariDriver;
 
 public class StaticWebDriver {
 	
@@ -15,6 +17,7 @@ public class StaticWebDriver {
 	
 	public void createDriver(){
 		if (driver == null) {
+			//System.setProperty("webdriver.firefox.bin", "/System");
 			StaticWebDriver.driver = new FirefoxDriver();
 		}
 	}
