@@ -5,26 +5,20 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class StaticWebDriver {
 	
-	private static WebDriver driver;
-	
-	
-	static  {
-		get();
-	}
+	private WebDriver driver;
+
 	
 	
 	public void createDriver(){
 		if (driver == null) {
-			StaticWebDriver.driver = new FirefoxDriver();
+			this.driver = new FirefoxDriver();
 		}
 	}
 	
-	private static void get() {
-		// TODO Auto-generated method stub
-		
-	}
 
-	public static WebDriver getDriver(){
+
+	public WebDriver getDriver(){
+		createDriver();
 		return driver;
 	}
 

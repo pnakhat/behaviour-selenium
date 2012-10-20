@@ -1,6 +1,7 @@
 package org.qainfolabs.behaviour.executor;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.qainfolabs.behaviour.webdriver.StaticWebDriver;
 import org.qainfolabs.behaviour.webdriver.WebDriverHelper;
 
@@ -11,11 +12,13 @@ public class Command {
 	protected String data;
 	protected String object;
 	protected String[] stepArray;
+	private Logger logger;
 
 	//setText "IBM" name=q
 
 	public Command(String lowLevelStep) {
 		this.step = lowLevelStep;
+		this.logger  = Logger.getLogger("myApp");
 		System.setProperty("delim", "|");
 		stepArray = lowLevelStep.split(",");
 		setAction();
@@ -53,11 +56,11 @@ public class Command {
 	}
 
 
-	public void exeute() {
-		System.out.println("I am action " + getAction());
-		System.out.println("I am Data " + getData());
-		System.out.println("I am UI Object " + getObject());		
-		WebDriverHelper helper = new WebDriverHelper(StaticWebDriver.getDriver());
+	public void exeute(WebDriverHelper helper) {
+		logger.info("I am action " + getAction());
+		logger.info("I am Data " + getData());
+		logger.info("I am UI Object " + getObject());		
+		//WebDriverHelper helper = new WebDriverHelper(StaticWebDriver.getDriver());
 		helper.execute(getAction() , getData(), getObject());
 		
 	}

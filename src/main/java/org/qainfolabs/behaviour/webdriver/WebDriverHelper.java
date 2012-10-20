@@ -31,4 +31,8 @@ public class WebDriverHelper {
 		
 	}
 
+	public void closeBrowser() {
+		driver.close();
+	}
+
 }

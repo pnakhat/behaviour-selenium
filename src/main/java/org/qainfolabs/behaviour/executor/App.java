@@ -22,7 +22,6 @@ public class App
     
     {
     	PropertyConfigurator.configure("log4j.properties");
-
     	Logger logger = Logger.getLogger("myapp");
 
     	StoryReader storyReader = new StoryReader("src/main/scenarios");

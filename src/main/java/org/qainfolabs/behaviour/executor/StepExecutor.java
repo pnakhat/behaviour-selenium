@@ -7,12 +7,15 @@ import java.util.List;
 
 import org.qainfolabs.behaviour.selenium.utils.ReadFileInBuffer;
 import org.qainfolabs.behaviour.selenium.utils.StepDefinition;
+import org.qainfolabs.behaviour.webdriver.WebDriverHelper;
 
 public class StepExecutor {
 	protected StepDefinition stepDefinition;
+	private WebDriverHelper helper;
 	
-	public StepExecutor() {
+	public StepExecutor(WebDriverHelper helper) {
 		this.stepDefinition = new StepDefinition();
+		this.helper = helper;
 	}
 
 	public void executeStep(String step) {
@@ -40,7 +43,8 @@ public class StepExecutor {
 		
 		for (int i=0;i<lowLevelSteps.size() -1;i++){
 			CommandExecutor ce = new CommandExecutor(lowLevelSteps.get(i));
-			ce.getCommands().exeute();
+			//helper
+			ce.getCommands().exeute(helper);
 		}
 	}
 
