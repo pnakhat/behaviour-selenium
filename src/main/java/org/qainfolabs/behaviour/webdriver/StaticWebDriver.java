@@ -1,7 +1,10 @@
 package org.qainfolabs.behaviour.webdriver;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.qainfolabs.behaviour.webdriver.drivers.PropertyWebDriver;
 
 public class StaticWebDriver {
 	
@@ -11,7 +14,7 @@ public class StaticWebDriver {
 	
 	public void createDriver(){
 		if (driver == null) {
-			this.driver = new FirefoxDriver();
+			this.driver = new PropertyWebDriver();
 		}
 	}
 	
@@ -24,7 +27,7 @@ public class StaticWebDriver {
 
 	public void closeBrowser() {
 		if (driver != null) {
-			System.out.println("CLosing browser......");
+			System.out.println("Closing browser......");
 			driver.close();
 			driver = null;
 		}

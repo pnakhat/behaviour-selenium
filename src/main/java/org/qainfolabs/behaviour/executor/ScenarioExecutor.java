@@ -8,7 +8,7 @@ import org.qainfolabs.behaviour.webdriver.StaticWebDriver;
 import org.qainfolabs.behaviour.webdriver.WebDriverHelper;
 
 
-public class ScenarioExecutor {
+public class ScenarioExecutor implements Runnable {
 	
 	protected Scenario scenario;
 	protected StepExecutor stepExecutor;
@@ -19,11 +19,11 @@ public class ScenarioExecutor {
 		this.scenario = scenario;
 		this.helper = new WebDriverHelper(new StaticWebDriver().getDriver());
 		this.stepExecutor = new StepExecutor(helper);
-		this.logger = Logger.getLogger("myapp");
+		this.logger = Logger.getLogger(ScenarioExecutor.class);
 
 	}
 
-	public void executeScenario() {
+	private void executeScenario() {
 		Iterator<Step> steps = scenario.allSteps().iterator();
 		while(steps.hasNext()){
 			String stepToExecute = steps.next().getStep();
@@ -31,6 +31,10 @@ public class ScenarioExecutor {
 			stepExecutor.executeStep(stepToExecute);
 		}
 		helper.closeBrowser();
+	}
+
+	public void run() {
+		executeScenario();
 	}
 
 }

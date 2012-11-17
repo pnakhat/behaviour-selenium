@@ -19,7 +19,7 @@ public class StepTest {
 		public void testScenarioExtractor() throws IOException{			
 			StepDefinition  oStepReader = new StepDefinition();
 			List<String> testSteps = oStepReader.getStepDefinition("Given I do something");					 
-			Assert.assertEquals(testSteps.size(), 3);
+			Assert.assertEquals(testSteps.size(), 4);
 		}
 
 }

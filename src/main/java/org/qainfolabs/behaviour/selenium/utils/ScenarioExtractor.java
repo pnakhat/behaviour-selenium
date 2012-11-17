@@ -20,15 +20,16 @@ public class ScenarioExtractor {
 		Scenario scn = null;
 		boolean foundScenarioStart = false;
 		while((line = bf.readLine())!=null){
-			if(line.contains("Scenario") || line.contains("End Scenario")){
+			if(line.startsWith("Scenario")){
 				foundScenarioStart = true;
-				if(line.contains("End Scenario")){
-					scn.readSteps(scenarioSteps);
-					scenarios.add(scn);
-					System.out.println("All steps" + scn.allSteps().toString());
-				}
 				scn = new Scenario();
+				scn.setTitle(line);
 				scenarioSteps = new ArrayList<Step>();
+			}
+			if(line.contains("End Scenario")){
+				scn.readSteps(scenarioSteps);
+				scenarios.add(scn);
+				System.out.println("All steps" + scn.allSteps().toString());
 			}
 			
 			if(foundScenarioStart){

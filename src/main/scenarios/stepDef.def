@@ -1,5 +1,6 @@
 Match "Given I do something"
 open,http://www.etsy.com,
 setText,Jeans,id=search-query
+click,,id=search_submit
 End Match
 

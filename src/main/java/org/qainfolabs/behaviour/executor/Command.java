@@ -1,8 +1,6 @@
 package org.qainfolabs.behaviour.executor;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.qainfolabs.behaviour.webdriver.StaticWebDriver;
 import org.qainfolabs.behaviour.webdriver.WebDriverHelper;
 
 public class Command {
@@ -12,13 +10,12 @@ public class Command {
 	protected String data;
 	protected String object;
 	protected String[] stepArray;
-	private Logger logger;
+	private static final Logger logger = Logger.getLogger(Command.class);
 
 	//setText "IBM" name=q
 
 	public Command(String lowLevelStep) {
 		this.step = lowLevelStep;
-		this.logger  = Logger.getLogger("myApp");
 		System.setProperty("delim", "|");
 		stepArray = lowLevelStep.split(",");
 		setAction();

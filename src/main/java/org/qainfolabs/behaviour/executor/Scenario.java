@@ -6,6 +6,7 @@ import java.util.List;
 public class Scenario {
 	
 	List<Step> scenarioSteps;
+	private String scenarioName;
 	public Scenario(){
 		this.scenarioSteps = new ArrayList<Step>();
 	}
@@ -18,6 +19,15 @@ public class Scenario {
 	
 	public List<Step> allSteps(){
 		return scenarioSteps;
+	}
+
+
+	public void setTitle(String title) {
+		this.scenarioName = title;
+	}
+	
+	public String getTitle(){
+		return scenarioName;
 	}
 
 }
