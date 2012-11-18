@@ -10,14 +10,15 @@ public class Command {
 	protected String data;
 	protected String object;
 	protected String[] stepArray;
-	private static final Logger logger = Logger.getLogger(Command.class);
+	private static final Logger LOGGER = Logger.getLogger(Command.class);
 
 	//setText "IBM" name=q
 
 	public Command(String lowLevelStep) {
 		this.step = lowLevelStep;
-		System.setProperty("delim", "|");
-		stepArray = lowLevelStep.split(",");
+		System.setProperty("delim", ",");
+        String delim = System.getProperty("delim");
+		stepArray = lowLevelStep.split(delim);
 		setAction();
 		setObject();
 		setData();
@@ -28,6 +29,10 @@ public class Command {
 		if(stepArray.length > 2){
 			this.object = stepArray[2];
 		}
+        else {
+            LOGGER.info("No object definition found in low level step - " +step);
+            this.object = "";
+        }
 	}
 
 
@@ -54,9 +59,11 @@ public class Command {
 
 
 	public void exeute(WebDriverHelper helper) {
-		logger.info("I am action " + getAction());
-		logger.info("I am Data " + getData());
-		logger.info("I am UI Object " + getObject());		
+        LOGGER.info("Decoding Step: - " + step + ".....................................");
+		LOGGER.info("Action: " + getAction());
+		LOGGER.info("Data " + getData());
+		LOGGER.info("UI Object " + getObject());
+        LOGGER.info("Step Decoding finished...................................");
 		//WebDriverHelper helper = new WebDriverHelper(StaticWebDriver.getDriver());
 		helper.execute(getAction() , getData(), getObject());
 		

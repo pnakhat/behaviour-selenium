@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.SystemUtils;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -18,6 +19,7 @@ import org.qainfolabs.behaviour.webdriver.drivers.PropertyWebDriver;
 public class WebDriverHelper {
 	
 	protected PropertyWebDriver driver;
+    private static final Logger LOGGER = Logger.getLogger(WebDriverHelper.class);
 	
 	public WebDriverHelper(WebDriver driver) {
 		this.driver = (PropertyWebDriver) driver;
@@ -29,7 +31,11 @@ public class WebDriverHelper {
 		//Object can be null for command like open url
 		if(object!=null){
 			strategy = object.split("=")[0];
-			locator  = object.split("=")[1];
+            try{
+                locator  = object.split("=")[1];
+            } catch (Exception e){
+                LOGGER.info("Could not find locator in Object: " + object);
+            }
 		}
 		
 		WebElement element = null;
@@ -42,35 +48,27 @@ public class WebDriverHelper {
 		}
 		
 		SeleniumCommandEnum COMMAND = SeleniumCommandEnum.getCommandEnum(action);
-		
-		switch (COMMAND) {
-		case OPEN:
-			driver.get(data);
-		case SETTEXT:
-			element.sendKeys(data);
-		case CLICK:
-			element.click();
-			
-		default:
-			break;
-		}
-		
-//
-//		if(action.equalsIgnoreCase("Open")){			
-//			driver.get(data);		
-//			//driver.takeScreenshot();
-//		}
-//		
-//		if(action.equalsIgnoreCase("setText")){	
-//			element.sendKeys(data);
-//		}
-//		if(action.equalsIgnoreCase("click")){	
-//			element.click();
-//		}
-//		
+        takeWebdriverAction(data, element, COMMAND);
+
 	}
 
-	public void takeScreenshot() {
+    private void takeWebdriverAction(String data, WebElement element, SeleniumCommandEnum COMMAND) {
+        switch (COMMAND) {
+        case OPEN:
+            driver.get(data);
+            return ;
+        case SETTEXT:
+            element.sendKeys(data);
+            return;
+        case CLICK:
+            element.click();
+             return;
+        default:
+            break;
+        }
+    }
+
+    public void takeScreenshot() {
 		File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		try {
 			System.currentTimeMillis();

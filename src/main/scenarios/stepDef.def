@@ -1,6 +1,11 @@
 Match "Given I do something"
 open,http://www.etsy.com,
-setText,Jeans,id=search-query
+setText,Jeans,id=search-query1
 click,,id=search_submit
+End Match
+
+
+Match "When I do something"
+open,http://www.google.com,
 End Match
 

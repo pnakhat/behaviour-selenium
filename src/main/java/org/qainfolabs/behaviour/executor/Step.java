@@ -1,22 +1,39 @@
 package org.qainfolabs.behaviour.executor;
 
-import java.util.List;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
+
+import static org.apache.log4j.Logger.getLogger;
 
 public class Step {
+	private String stepName;
+    private String status;
 
+    public String getStackTrace() {
+        return stackTrace;
+    }
 
-	private String step;
-	private Logger logger;
+    public void setStackTrace(String stackTrace) {
+        this.stackTrace = stackTrace;
+    }
+
+    private String stackTrace;
+    private static Logger LOGGER = Logger.getLogger(Step.class);
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
 	public Step(String step) {
-		this.logger = Logger.getLogger("myapp");
-		this.step = step;
+		this.stepName = step;
 	}
 
-	public String getStep() {
-		logger.info(step);
-		return step;
+	public String getStepName() {
+        LOGGER.info(stepName);
+		return stepName;
 	}
 
 }
