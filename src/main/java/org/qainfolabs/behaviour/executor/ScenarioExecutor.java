@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Iterator;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.json.JsonHierarchicalStreamDriver;
 import org.apache.log4j.Logger;
 import org.qainfolabs.behaviour.reporting.ScenarioReportSchema;
 import org.qainfolabs.behaviour.utils.FileWriterUtil;
@@ -53,7 +54,7 @@ public class ScenarioExecutor implements Runnable {
 	}
 
     private String generateResultXml() {
-        XStream xstream = new XStream();
+        XStream xstream = new XStream(new JsonHierarchicalStreamDriver());
         xstream.alias("Scenario",ScenarioReportSchema.class);
         xstream.useAttributeFor(ScenarioReportSchema.class, "scenarioName");
         xstream.alias("Step", Step.class);
