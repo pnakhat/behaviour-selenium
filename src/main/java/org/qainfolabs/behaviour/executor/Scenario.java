@@ -7,7 +7,9 @@ public class Scenario {
 	
 	List<Step> scenarioSteps;
 	private String scenarioName;
-	public Scenario(){
+    private String featureFileName;
+
+    public Scenario(){
 		this.scenarioSteps = new ArrayList<Step>();
 	}
 	
@@ -30,4 +32,11 @@ public class Scenario {
 		return scenarioName;
 	}
 
+    public void setStoryName(String featureFileName) {
+        this.featureFileName = featureFileName;
+    }
+
+    public String FeatureFileName() {
+        return featureFileName;
+    }
 }

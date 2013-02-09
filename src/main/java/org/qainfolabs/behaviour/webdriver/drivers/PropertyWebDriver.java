@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
+import com.gargoylesoftware.htmlunit.BrowserVersion;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -13,17 +14,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 public class PropertyWebDriver implements WebDriver {
 	
 	private WebDriver driver;
 
-	public PropertyWebDriver() {
+    public PropertyWebDriver() {
 		this.driver =  PropertyBasedWebDriver();
 	}
 
-	private WebDriver PropertyBasedWebDriver() {
+	public WebDriver PropertyBasedWebDriver() {
 		WebDriver _driver = null;
 		String browserToUse = System.getProperty("browser", "firefox");
 		if (browserToUse.equalsIgnoreCase("FIREFOX")) {
@@ -31,11 +36,14 @@ public class PropertyWebDriver implements WebDriver {
 		} else if (browserToUse.equalsIgnoreCase("CHROME")) {
 			System.setProperty("webdriver.chrome.driver","D:\\Users\\pankaj\\AppData\\Local\\Google\\Chrome\\Application\\chromedriver.exe");
 			_driver = new ChromeDriver();
-		}else if (browserToUse.equalsIgnoreCase("IE")) {
+		} else if (browserToUse.equalsIgnoreCase("IE")) {
 			_driver = new InternetExplorerDriver();
-		}
+		} else if (browserToUse.equalsIgnoreCase("HEADLESS")) {
+            _driver = new HtmlUnitDriver(BrowserVersion.FIREFOX_3_6);
+        }
+        this.driver = _driver;
 
-		return _driver;
+		return driver;
 	}
 
 	public void close() {

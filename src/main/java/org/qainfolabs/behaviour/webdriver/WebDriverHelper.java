@@ -15,14 +15,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.qainfolabs.behaviour.selenium.utils.SeleniumCommandEnum;
 import org.qainfolabs.behaviour.webdriver.drivers.PropertyWebDriver;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 public class WebDriverHelper {
-	
+
 	protected PropertyWebDriver driver;
     private static final Logger LOGGER = Logger.getLogger(WebDriverHelper.class);
-	
-	public WebDriverHelper(WebDriver driver) {
-		this.driver = (PropertyWebDriver) driver;
+
+
+    public WebDriverHelper(PropertyWebDriver driver) {
+		this.driver = driver;
 	}
 
 	public void execute(String action, String data, String object) {

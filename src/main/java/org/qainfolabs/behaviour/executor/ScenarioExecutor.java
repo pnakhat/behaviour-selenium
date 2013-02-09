@@ -1,16 +1,15 @@
 package org.qainfolabs.behaviour.executor;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Iterator;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.json.JsonHierarchicalStreamDriver;
 import org.apache.log4j.Logger;
+import org.qainfolabs.behaviour.reporting.ReportGenerator;
 import org.qainfolabs.behaviour.reporting.ScenarioReportSchema;
 import org.qainfolabs.behaviour.utils.FileWriterUtil;
-import org.qainfolabs.behaviour.webdriver.StaticWebDriver;
 import org.qainfolabs.behaviour.webdriver.WebDriverHelper;
+import org.qainfolabs.behaviour.webdriver.drivers.PropertyWebDriver;
 
 
 public class ScenarioExecutor implements Runnable {
@@ -20,13 +19,16 @@ public class ScenarioExecutor implements Runnable {
 	private Logger LOGGER;
 	private WebDriverHelper helper;
     private ScenarioReportSchema scenarioReport;
+    private final String featureFileName;
+    private boolean didScenarioFailed = false;
 
-	public ScenarioExecutor(Scenario scenario) {
+    public ScenarioExecutor(Scenario scenario) {
 		this.scenario = scenario;
-		this.helper = new WebDriverHelper(new StaticWebDriver().getDriver());
+		this.helper = new WebDriverHelper(new PropertyWebDriver());
 		this.stepExecutor = new StepExecutor(helper);
 		this.LOGGER = Logger.getLogger(ScenarioExecutor.class);
         this.scenarioReport = new ScenarioReportSchema(scenario.getTitle());
+        this.featureFileName = scenario.FeatureFileName();
 
 	}
 
@@ -36,38 +38,29 @@ public class ScenarioExecutor implements Runnable {
             Step currentStep = steps.next();
 			String stepToExecute = currentStep.getStepName();
             scenarioReport.setStep(currentStep);
-			LOGGER.info("Step to execute : " + stepToExecute) ;
             try{
-			    stepExecutor.executeStep(currentStep);
-                currentStep.setStatus("PASSED");
+                String path = "src/main/scenarios/" + "stepDef_"+featureFileName;
+                if(!didScenarioFailed) {
+                    LOGGER.info("Step to execute : " + stepToExecute) ;
+                    stepExecutor.executeStep(currentStep);
+                    currentStep.setStatus("PASSED");
+                } else {
+                    currentStep.setStatus("SKIPPED");
+                }
             }catch (Exception e){
+                didScenarioFailed = true;
+                helper.closeBrowser();
                 currentStep.setStatus("FAILED");
                 currentStep.setStackTrace(e.getMessage());
                 LOGGER.info(e.getMessage());
             }
 		}
-		helper.closeBrowser();
-        String xml = generateResultXml();
+
+        String xml = new ReportGenerator().generateResultXml(scenarioReport);
         String fileName = scenario.getTitle().replaceAll(" ","")+".xml";
         LOGGER.info("File created " + FileWriterUtil.writeFile(fileName,xml));
         LOGGER.info(xml);
 	}
-
-    private String generateResultXml() {
-        XStream xstream = new XStream(new JsonHierarchicalStreamDriver());
-        xstream.alias("Scenario",ScenarioReportSchema.class);
-        xstream.useAttributeFor(ScenarioReportSchema.class, "scenarioName");
-        xstream.alias("Step", Step.class);
-        xstream.useAttributeFor(Step.class, "stepName");
-        File f = new File(scenario.getTitle().replaceAll(" ","")+".xml");
-        try {
-            f.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
-
-        return xstream.toXML(scenarioReport);
-    }
 
     public void run() {
 		executeScenario();

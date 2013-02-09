@@ -4,6 +4,12 @@ setText,Jeans,id=search-query1
 click,,id=search_submit
 End Match
 
+Match "Then I verify that I did something"
+open, ""
+verifyText
+End Match
+
+
 
 Match "When I do something"
 open,http://www.google.com,

@@ -7,12 +7,12 @@ import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LowLevelDefinotion {
+public class LowLevelDefinition {
 	
 	protected List<String> lowLevelSteps;
 	
 	
-	public LowLevelDefinotion() {
+	public LowLevelDefinition() {
 	}
 
 	public List<String> getDefinitionOfStep(String step, File file) throws IOException {

@@ -64,7 +64,7 @@ public class Command {
 		LOGGER.info("Data " + getData());
 		LOGGER.info("UI Object " + getObject());
         LOGGER.info("Step Decoding finished...................................");
-		//WebDriverHelper helper = new WebDriverHelper(StaticWebDriver.getDriver());
+		//WebDriverHelper helper = new WebDriverHelper(DriverFactory.getDriver());
 		helper.execute(getAction() , getData(), getObject());
 		
 	}

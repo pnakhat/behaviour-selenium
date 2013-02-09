@@ -6,7 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.qainfolabs.behaviour.webdriver.drivers.PropertyWebDriver;
 
-public class StaticWebDriver {
+public class DriverFactory {
 	
 	private WebDriver driver;
 

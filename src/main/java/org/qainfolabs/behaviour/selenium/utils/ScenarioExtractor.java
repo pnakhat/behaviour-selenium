@@ -24,6 +24,7 @@ public class ScenarioExtractor {
 				foundScenarioStart = true;
 				scn = new Scenario();
 				scn.setTitle(line);
+                scn.setStoryName(file.getName());
 				scenarioSteps = new ArrayList<Step>();
 			}
 			if(line.contains("End Scenario")){

@@ -12,6 +12,7 @@ import org.apache.log4j.PropertyConfigurator;
 
 import org.qainfolabs.behaviour.selenium.utils.ScenarioExtractor;
 import org.qainfolabs.behaviour.selenium.utils.StoryReader;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.junit.JUnit3TestRecognizer;
 import org.testng.junit.JUnitTestRunner;
 
@@ -25,7 +26,12 @@ public class App{
 	public static void main(String[] args) throws IOException
 
 	{
-		PropertyConfigurator.configure("log4j.properties");
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+        ctx.scan("org.qainfolabs");
+        ctx.refresh();
+
+
+        PropertyConfigurator.configure("log4j.properties");
 
 		StoryReader storyReader = new StoryReader("src/main/scenarios");
 		List<File> allStories = storyReader.getAllStories();
@@ -36,7 +42,6 @@ public class App{
 			logger.info("Number of scenarios in story \": "
 					+ allStories.get(i).getName() + "\" are  "
 					+ allScenariosInStory.size());
-			// Iterator<Scenario> scenario = allScenariosInStory.iterator();
 			List<Thread> threads = new ArrayList<Thread>();
 
 			for (int j = 0; j < allScenariosInStory.size(); j++) {
@@ -51,10 +56,6 @@ public class App{
 				threads.get(t).start();
 			}
 
-			// while(scenario.hasNext()){
-			//
-			// //scenarioExecutor.executeScenario();
-			// }
 		}
 
 	}

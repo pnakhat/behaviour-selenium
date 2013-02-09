@@ -20,7 +20,10 @@ public class FileWriterUtil {
     public synchronized static  String writeFile(String fileName, String content) {
         String text = "";
         File theDir = new File("target/behaviour-selenium/scenarios");
-        if (!theDir.exists()) theDir.mkdir();
+        if (!theDir.exists()) {
+           boolean created = theDir.mkdirs();
+        }
+
         try {
             file = new File(theDir +"/" + fileName.replaceAll(":",""));
             file.createNewFile();
