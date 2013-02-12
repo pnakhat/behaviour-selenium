@@ -7,17 +7,18 @@ import static org.apache.log4j.Logger.getLogger;
 public class Step {
 	private String stepName;
     private String status;
+    private static Logger LOGGER = Logger.getLogger(Step.class);
 
-    public String getStackTrace() {
+    public StackTraceElement[] getStackTrace() {
         return stackTrace;
     }
 
-    public void setStackTrace(String stackTrace) {
+    public void setStackTrace(StackTraceElement[] stackTrace) {
         this.stackTrace = stackTrace;
     }
 
-    private String stackTrace;
-    private static Logger LOGGER = Logger.getLogger(Step.class);
+    private StackTraceElement[] stackTrace;
+
 
     public String getStatus() {
         return status;

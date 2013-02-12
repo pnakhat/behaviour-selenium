@@ -29,9 +29,11 @@ public class PropertyWebDriver implements WebDriver {
 	}
 
 	public WebDriver PropertyBasedWebDriver() {
+        System.out.println("Created profile " + System.currentTimeMillis());
 		WebDriver _driver = null;
 		String browserToUse = System.getProperty("browser", "firefox");
 		if (browserToUse.equalsIgnoreCase("FIREFOX")) {
+
 			_driver = new FirefoxDriver();
 		} else if (browserToUse.equalsIgnoreCase("CHROME")) {
 			System.setProperty("webdriver.chrome.driver","D:\\Users\\pankaj\\AppData\\Local\\Google\\Chrome\\Application\\chromedriver.exe");

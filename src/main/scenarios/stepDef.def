@@ -4,8 +4,14 @@ setText,Jeans,id=search-query1
 click,,id=search_submit
 End Match
 
+Match "Given I search for $data"
+open,http://www.etsy.com,
+setText,$data,id=search-query
+click,,id=search_submit
+End Match
+
 Match "Then I verify that I did something"
-open, ""
+open,http://www.etsy.com,
 verifyText
 End Match
 

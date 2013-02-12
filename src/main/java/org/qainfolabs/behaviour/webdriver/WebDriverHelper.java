@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 public class WebDriverHelper {
 
 	protected PropertyWebDriver driver;
-    private static final Logger LOGGER = Logger.getLogger(WebDriverHelper.class);
+    private static Logger LOGGER = Logger.getLogger(WebDriverHelper.class);
 
 
     public WebDriverHelper(PropertyWebDriver driver) {

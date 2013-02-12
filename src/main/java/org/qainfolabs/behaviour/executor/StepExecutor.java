@@ -9,15 +9,21 @@ import org.apache.log4j.Logger;
 import org.qainfolabs.behaviour.selenium.utils.ReadFileInBuffer;
 import org.qainfolabs.behaviour.selenium.utils.StepDefinition;
 import org.qainfolabs.behaviour.webdriver.WebDriverHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+@Component
+@Scope("prototype")
 public class StepExecutor {
 	protected StepDefinition stepDefinition;
+    @Autowired(required = true)
 	private WebDriverHelper helper;
     private static Logger LOGGER = Logger.getLogger(StepExecutor.class);
 	
-	public StepExecutor(WebDriverHelper helper) {
+	public StepExecutor() {
 		this.stepDefinition = new StepDefinition();
-		this.helper = helper;
 	}
 
 	public void executeStep(Step step) {
@@ -30,7 +36,7 @@ public class StepExecutor {
             try {
                 lowLevelSteps = stepDefinition.getStepDefinition(step.getStepName());
                 if (lowLevelSteps.size() > 0) {
-                    LOGGER.info("Low level step for step: '" + step + "' is ->" + lowLevelSteps);
+                    LOGGER.info("Low level step for step: '" + step.getStepName() + "' is ->" + lowLevelSteps);
                     takeActionOnSteps(lowLevelSteps);
                 } else {
                     LOGGER.info("No low level step definition found for step" + step);

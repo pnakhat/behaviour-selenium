@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.qainfolabs.behaviour.executor.Scenario;
 import org.qainfolabs.behaviour.executor.Step;
+import org.springframework.stereotype.Component;
 
 public class ScenarioExtractor {
 

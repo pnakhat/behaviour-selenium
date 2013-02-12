@@ -10,36 +10,44 @@ import org.qainfolabs.behaviour.reporting.ScenarioReportSchema;
 import org.qainfolabs.behaviour.utils.FileWriterUtil;
 import org.qainfolabs.behaviour.webdriver.WebDriverHelper;
 import org.qainfolabs.behaviour.webdriver.drivers.PropertyWebDriver;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-
-public class ScenarioExecutor implements Runnable {
+@Component
+@Scope("prototype")
+public class ScenarioExecutor implements Runnable  {
 	
-	protected Scenario scenario;
-	protected StepExecutor stepExecutor;
-	private Logger LOGGER;
-	private WebDriverHelper helper;
+	private Scenario scenario;
+	private static Logger LOGGER  = Logger.getLogger(ScenarioExecutor.class);
+    @Autowired
+	public WebDriverHelper helper;
     private ScenarioReportSchema scenarioReport;
-    private final String featureFileName;
+    private String featureFileName;
+    @Autowired
+    private StepExecutor stepExecutor;
+
     private boolean didScenarioFailed = false;
 
-    public ScenarioExecutor(Scenario scenario) {
-		this.scenario = scenario;
-		this.helper = new WebDriverHelper(new PropertyWebDriver());
-		this.stepExecutor = new StepExecutor(helper);
-		this.LOGGER = Logger.getLogger(ScenarioExecutor.class);
+
+    public ScenarioExecutor init() {
         this.scenarioReport = new ScenarioReportSchema(scenario.getTitle());
         this.featureFileName = scenario.FeatureFileName();
+        return this;
+    }
 
-	}
+    public void executeScenario() {
 
-	private void executeScenario() {
+        String path = "src/main/scenarios/" + "stepDef_"+featureFileName;
 		Iterator<Step> steps = scenario.allSteps().iterator();
 		while(steps.hasNext()){
             Step currentStep = steps.next();
 			String stepToExecute = currentStep.getStepName();
             scenarioReport.setStep(currentStep);
             try{
-                String path = "src/main/scenarios/" + "stepDef_"+featureFileName;
+
                 if(!didScenarioFailed) {
                     LOGGER.info("Step to execute : " + stepToExecute) ;
                     stepExecutor.executeStep(currentStep);
@@ -51,7 +59,8 @@ public class ScenarioExecutor implements Runnable {
                 didScenarioFailed = true;
                 helper.closeBrowser();
                 currentStep.setStatus("FAILED");
-                currentStep.setStackTrace(e.getMessage());
+                currentStep.setStackTrace(e.getStackTrace());
+                e.printStackTrace();
                 LOGGER.info(e.getMessage());
             }
 		}
@@ -66,4 +75,8 @@ public class ScenarioExecutor implements Runnable {
 		executeScenario();
 	}
 
+    public ScenarioExecutor setScenario(Scenario scenario) {
+        this.scenario = scenario;
+        return this;
+    }
 }

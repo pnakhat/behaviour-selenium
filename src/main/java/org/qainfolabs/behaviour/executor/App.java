@@ -12,6 +12,7 @@ import org.apache.log4j.PropertyConfigurator;
 
 import org.qainfolabs.behaviour.selenium.utils.ScenarioExtractor;
 import org.qainfolabs.behaviour.selenium.utils.StoryReader;
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.junit.JUnit3TestRecognizer;
 import org.testng.junit.JUnitTestRunner;
@@ -26,9 +27,7 @@ public class App{
 	public static void main(String[] args) throws IOException
 
 	{
-        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-        ctx.scan("org.qainfolabs");
-        ctx.refresh();
+
 
 
         PropertyConfigurator.configure("log4j.properties");
@@ -45,10 +44,10 @@ public class App{
 			List<Thread> threads = new ArrayList<Thread>();
 
 			for (int j = 0; j < allScenariosInStory.size(); j++) {
-				ScenarioExecutor scenarioExecutor = new ScenarioExecutor(
-						allScenariosInStory.get(j));
-				threads.add(new Thread(scenarioExecutor, "Thread Name-"
-						+ System.currentTimeMillis()));
+                AnnotationConfigApplicationContext ctx = getAnnotationConfigApplicationContext();
+                ScenarioExecutor scenarioExecutor =  (ScenarioExecutor) ctx.getBean(ScenarioExecutor.class);
+                scenarioExecutor.setScenario(allScenariosInStory.get(j)).init();
+		    	threads.add(new Thread(scenarioExecutor, "Thread Name- ["+ j + " ]" +System.currentTimeMillis()));
 			}
 
 			for (int t = 0; t < threads.size(); t++) {
@@ -59,4 +58,11 @@ public class App{
 		}
 
 	}
+
+    private static AnnotationConfigApplicationContext getAnnotationConfigApplicationContext() {
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+        ctx.scan("org.qainfolabs");
+        ctx.refresh();
+        return ctx;
+    }
 }
