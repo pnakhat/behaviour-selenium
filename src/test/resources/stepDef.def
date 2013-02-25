@@ -1,7 +1,0 @@
-Match "Given I have $jeans jeans and $shorts shorts"
-open,http://www.etsy.com,
-setText,Jeans,id=search-query
-click,,id=search_submit
-End Match
-
-

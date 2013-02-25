@@ -1,20 +1,15 @@
 package org.qainfolabs.behaviour.executor;
 
-import java.util.Iterator;
-
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.json.JsonHierarchicalStreamDriver;
 import org.apache.log4j.Logger;
 import org.qainfolabs.behaviour.reporting.ReportGenerator;
 import org.qainfolabs.behaviour.reporting.ScenarioReportSchema;
 import org.qainfolabs.behaviour.utils.FileWriterUtil;
 import org.qainfolabs.behaviour.webdriver.WebDriverHelper;
-import org.qainfolabs.behaviour.webdriver.drivers.PropertyWebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import java.util.Iterator;
 
 @Component
 @Scope("prototype")
@@ -64,7 +59,7 @@ public class ScenarioExecutor implements Runnable  {
                 LOGGER.info(e.getMessage());
             }
 		}
-
+        helper.closeBrowser();
         String xml = new ReportGenerator().generateResultXml(scenarioReport);
         String fileName = scenario.getTitle().replaceAll(" ","")+".xml";
         LOGGER.info("File created " + FileWriterUtil.writeFile(fileName,xml));

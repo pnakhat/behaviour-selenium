@@ -10,7 +10,7 @@ public class TestCommand {
 	@Test
 	public void testExtractAction(){
 		String testString = "open,\"http://www.google.co.uk\"";
-		Command cm = new Command(testString);
+		Command cm = new Command().init(testString);
 		Assert.assertEquals(cm.getAction(), "open");
 		//
 	}

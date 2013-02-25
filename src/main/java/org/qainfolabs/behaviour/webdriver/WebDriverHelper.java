@@ -23,7 +23,6 @@ public class WebDriverHelper {
 	protected PropertyWebDriver driver;
     private static Logger LOGGER = Logger.getLogger(WebDriverHelper.class);
 
-
     public WebDriverHelper(PropertyWebDriver driver) {
 		this.driver = driver;
 	}

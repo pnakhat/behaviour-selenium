@@ -3,7 +3,6 @@ open,http://www.etsy.com,
 setText,$data,id=search-query
 click,,id=search_submit
 setText,$data1,id=search-query
-
 End Match
 
 
@@ -11,17 +10,16 @@ Match "Given I do something"
 open,http://www.etsy.com,
 setText,Jeans,id=search-query
 click,,id=search_submit
+dosome
 End Match
 
 
-Match "Then I verify that I did something"
+
+Match "Given I have '&jeans' jeans and '&shorts' shorts"
 open,http://www.etsy.com,
-verifyText
+setText,Jeans,id=search-query
+click,,id=search_submit
 End Match
 
 
-
-Match "When I do something"
-open,http://www.google.com,
-End Match
 

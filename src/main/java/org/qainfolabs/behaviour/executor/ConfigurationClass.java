@@ -48,6 +48,14 @@ public class ConfigurationClass {
     }
 
 
+    @Bean
+    @Lazy
+    @Scope("prototype")
+    public ScenarioExecutor scenarioExecutor() {
+        return new ScenarioExecutor();
+    }
+
+
 
 
 }

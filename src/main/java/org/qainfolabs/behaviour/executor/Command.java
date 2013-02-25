@@ -2,27 +2,36 @@ package org.qainfolabs.behaviour.executor;
 
 import org.apache.log4j.Logger;
 import org.qainfolabs.behaviour.webdriver.WebDriverHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Command {
 
-	protected String step;
-	protected String action;
-	protected String data;
-	protected String object;
-	protected String[] stepArray;
+	private String lowLeveStep;
+	private String action;
+	private String data;
+	private String object;
+	private String[] stepArray;
+
 	private static final Logger LOGGER = Logger.getLogger(Command.class);
 
 	//setText "IBM" name=q
 
-	public Command(String lowLevelStep) {
-		this.step = lowLevelStep;
-		System.setProperty("delim", ",");
+
+
+    public Command init(String lowLevelStep) {
+        this.lowLeveStep = lowLevelStep;
+        System.setProperty("delim", ",");
         String delim = System.getProperty("delim");
-		stepArray = lowLevelStep.split(delim);
-		setAction();
-		setObject();
-		setData();
-	}
+        stepArray = lowLevelStep.split(delim);
+        setAction();
+        setObject();
+        setData();
+        return this;
+    }
+
+
 	
 	
 	private void setObject() {
@@ -30,7 +39,7 @@ public class Command {
 			this.object = stepArray[2];
 		}
         else {
-            LOGGER.info("No object definition found in low level step - " +step);
+            LOGGER.info("No object definition found in low level lowLeveStep - " + lowLeveStep);
             this.object = "";
         }
 	}
@@ -59,7 +68,7 @@ public class Command {
 
 
 	public void exeute(WebDriverHelper helper) {
-        LOGGER.info("Decoding Step: - " + step + ".....................................");
+        LOGGER.info("Decoding Step: - " + lowLeveStep + ".....................................");
 		LOGGER.info("Action: " + getAction());
 		LOGGER.info("Data " + getData());
 		LOGGER.info("UI Object " + getObject());
@@ -68,7 +77,9 @@ public class Command {
 		helper.execute(getAction() , getData(), getObject());
 		
 	}
-	
-	 
 
+
+    public void replaceVariableNameWithValue(String data) {
+        this.data = data;
+    }
 }

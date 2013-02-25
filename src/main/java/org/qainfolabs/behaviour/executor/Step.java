@@ -37,4 +37,7 @@ public class Step {
 		return stepName;
 	}
 
+    public boolean hasParameters() {
+        return stepName.matches(".*'.*$");
+    }
 }
