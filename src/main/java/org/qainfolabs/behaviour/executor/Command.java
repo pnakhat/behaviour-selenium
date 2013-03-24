@@ -8,16 +8,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class Command {
 
-	private String lowLeveStep;
-	private String action;
-	private String data;
-	private String object;
-	private String[] stepArray;
+    private String lowLeveStep;
+    private String action;
+    private String data;
+    private String object;
+    private String[] stepArray;
 
-	private static final Logger LOGGER = Logger.getLogger(Command.class);
+    private static final Logger LOGGER = Logger.getLogger(Command.class);
 
-	//setText "IBM" name=q
-
+    //setText "IBM" name=q
 
 
     public Command init(String lowLevelStep) {
@@ -32,51 +31,54 @@ public class Command {
     }
 
 
-	
-	
-	private void setObject() {
-		if(stepArray.length > 2){
-			this.object = stepArray[2];
-		}
-        else {
+    private void setObject() {
+        if (stepArray.length > 2) {
+            this.object = stepArray[2];
+        } else {
             LOGGER.info("No object definition found in low level lowLeveStep - " + lowLeveStep);
             this.object = "";
         }
-	}
+    }
 
 
-	private void setData() {
-		this.data  = stepArray[1];
-	}
+    private void setData() {
+        try {
+            this.data = stepArray[1];
+        } catch (IndexOutOfBoundsException e) {
+            LOGGER.info("No data to set in command " + this.getAction());
+            throw new IllegalArgumentException("No data to set in command, Please check the low level step -> " + lowLeveStep);
+        }
+
+    }
 
 
-	private void setAction(){
-		this.action = stepArray[0];
-	}
-	
-	public String getAction(){
-		return this.action;
-	}
-	
-	public String getData(){
-		return this.data.trim();
-	}
-	
-	public String getObject(){
-		return this.object;
-	}
+    private void setAction() {
+        this.action = stepArray[0];
+    }
+
+    public String getAction() {
+        return this.action;
+    }
+
+    public String getData() {
+        return this.data.trim();
+    }
+
+    public String getObject() {
+        return this.object;
+    }
 
 
-	public void exeute(WebDriverHelper helper) {
+    public void exeute(WebDriverHelper helper) {
         LOGGER.info("Decoding Step: - " + lowLeveStep + ".....................................");
-		LOGGER.info("Action: " + getAction());
-		LOGGER.info("Data " + getData());
-		LOGGER.info("UI Object " + getObject());
+        LOGGER.info("Action: " + getAction());
+        LOGGER.info("Data " + getData());
+        LOGGER.info("UI Object " + getObject());
         LOGGER.info("Step Decoding finished...................................");
-		//WebDriverHelper helper = new WebDriverHelper(DriverFactory.getDriver());
-		helper.execute(getAction() , getData(), getObject());
-		
-	}
+        //WebDriverHelper helper = new WebDriverHelper(DriverFactory.getDriver());
+        helper.execute(getAction(), getData(), getObject());
+
+    }
 
 
     public void replaceVariableNameWithValue(String data) {

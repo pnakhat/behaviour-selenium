@@ -1,9 +1,8 @@
 Match "Given I search for '&data' and find '&data1'"
 open,http://www.etsy.com,
-setText,$data,id=search-query
+setText,&data,id=search-query
 click,,id=search_submit
-setText,$data1,id=search-query
-
+setText,&data1,id=search-query
 End Match
 
 
@@ -16,7 +15,7 @@ End Match
 
 Match "Then I verify that I did something"
 open,http://www.etsy.com,
-verifyText
+verifyText1,vvvvvv,
 End Match
 
 

@@ -6,9 +6,10 @@ Then I dont exist
 End Scenario:
 
 
-
-
-
+Scenario:2
+A
+B
+Scenario:3
 
 
 

@@ -18,11 +18,13 @@ public class LowLevelDefinition {
 
     private List<String> storyFileParameterValues;
     private String highLevelStep;
+    private String stepregex;
     private List<String> matchedLowLevelParameterList;
     private String matchedLowLevelMethodName;
 
     public LowLevelDefinition(String highLevelStep){
         this.highLevelStep = highLevelStep;
+        this.stepregex = createStepRegex();
     }
 
 
@@ -31,7 +33,7 @@ public class LowLevelDefinition {
 
         this.lowLevelSteps = new ArrayList<LowLevelStep>();
 
-		String stepToBeMatched = "Match \""+createStepRegex() +"\"";
+		String stepToBeMatched = "Match \""+stepregex +"\"";
 		LineNumberReader lr = new LineNumberReader(new FileReader(file));
 		int startLine = 0;
 		boolean matchStart = false;
@@ -71,7 +73,7 @@ public class LowLevelDefinition {
         if(parameters!=null) {
           storyFileParameterValues = Arrays.asList(parameters);
             for (String parameter : storyFileParameterValues) {
-                stepregex = StringUtils.replace(stepregex,  parameter , "[^\\s]*");
+                stepregex = StringUtils.replace(stepregex,  parameter , "&[^\\s]*");
             }
         }
         return stepregex;
@@ -91,4 +93,5 @@ public class LowLevelDefinition {
 
         return map;
     }
+
 }

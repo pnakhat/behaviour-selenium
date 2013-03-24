@@ -5,7 +5,7 @@ public enum SeleniumCommandEnum {
 	
 	OPEN("open"),
 	SETTEXT("setText"),
-	CLICK("click");
+	CLICK("click"), VERIFYTEXT("verifyText");
 	
 	private String command;
 

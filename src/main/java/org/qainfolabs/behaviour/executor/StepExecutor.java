@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.qainfolabs.behaviour.exceptions.NoLowLevelStepExists;
 import org.qainfolabs.behaviour.selenium.utils.LowLevelDefinition;
 import org.qainfolabs.behaviour.webdriver.WebDriverHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,18 +36,25 @@ public class StepExecutor {
             try {
                 LowLevelDefinition ld = new LowLevelDefinition(step.getStepName());
                 lowLevelSteps = ld.getDefinitionOfStep(stepDefFile).getLowLevelSteps();
-                HashMap<String, String> stepParaMeters = ld.getStepParameterMap();
+                HashMap<String, String> stepParaMeters = new HashMap<String, String>();
+                if(step.hasParameters()) {
+                    stepParaMeters =  ld.getStepParameterMap();
+                }
 
                 if (lowLevelSteps.size() > 0) {
                     LOGGER.info("Low level lowLeveStep for lowLeveStep: '" + step.getStepName() + "' is ->" + lowLevelSteps);
                     takeActionOnSteps(lowLevelSteps, stepParaMeters);
                 } else {
-                    LOGGER.info("No low level lowLeveStep definition found for lowLeveStep:-> " + step.getStepName());
-                    step.setStatus("FAILED");
+                    String message = "No low level lowLeveStep definition found for lowLeveStep:-> " + step.getStepName();
+                    LOGGER.info(message);
+                    throw new NoLowLevelStepExists(message);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
                 step.setStatus("FAILED");
+            } catch (NoLowLevelStepExists e) {
+                e.printStackTrace();
+                step.setStatus("SKIPPED");
             }
         }
     }
@@ -54,7 +62,7 @@ public class StepExecutor {
 
 	private void takeActionOnSteps(List<LowLevelStep> lowLevelSteps, HashMap<String, String> stepParaMeters) {
 		
-		for (int i=0;i<lowLevelSteps.size() -1;i++){
+		for (int i=0;i<lowLevelSteps.size() ;i++){
 			CommandExecutor ce = new CommandExecutor(lowLevelSteps.get(i).getLowLevelStep());
             String parameName = ce.getCommands().getData();
             if(StringUtils.startsWith(parameName,"&")){

@@ -30,11 +30,11 @@ public class WebDriverTest {
     @Before
     public void setUp() throws Exception {
 
-        DesiredCapabilities capabillities = DesiredCapabilities.iphone();
-      //  capabillities.setCapability("version", "5.0");
-        capabillities.setCapability("platform", Platform.MAC);
+        DesiredCapabilities capabillities = DesiredCapabilities.firefox();
+//        capabillities.setCapability("version", "5.1");
+        capabillities.setCapability("platform", Platform.WINDOWS);
         this.driver = new RemoteWebDriver(
-                new URL("http://localhost:4545/wd/hub"),
+                new URL("http://192.168.0.149:4444/wd/hub"),
                 capabillities);
     }
 

@@ -13,8 +13,7 @@ import org.springframework.stereotype.Component;
 public class ScenarioExtractor {
 
 	public static List<Scenario> getAllScenarios(File file) throws IOException {
-		ReadFileInBuffer rf = new ReadFileInBuffer();
-    	BufferedReader bf = rf.readFile(file);
+        BufferedReader bf = getBufferedReader(file);
 		String line;
 		List<Step> scenarioSteps = null;
 		List<Scenario> scenarios = new ArrayList<Scenario>();
@@ -37,10 +36,15 @@ public class ScenarioExtractor {
 			if(foundScenarioStart){
 				scenarioSteps.add(new Step(line));
 			}
-			
-			
+
     	}
+        bf.close();
 		return scenarios;
 	}
+
+    private static BufferedReader getBufferedReader(File file) {
+        ReadFileInBuffer rf = new ReadFileInBuffer();
+        return rf.readFile(file);
+    }
 
 }

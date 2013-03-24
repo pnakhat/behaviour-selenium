@@ -22,12 +22,6 @@ public class StepTest {
 
     private LowLevelDefinition lowLevelDefinition;
 
-	/*
-     * test to determine number of steps in current file
-	 * result asserted may fail if there is change in stepdef.def file. 
-	 * Currently src/main/scenarios/stepDefTest.def is hard coded in stepDefination.java
-	*/
-
 
     @BeforeClass
     public void setUp(){

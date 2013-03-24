@@ -13,6 +13,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.qainfolabs.behaviour.exceptions.NoObjectDefinitionFound;
 import org.qainfolabs.behaviour.selenium.utils.SeleniumCommandEnum;
 import org.qainfolabs.behaviour.webdriver.drivers.PropertyWebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class WebDriverHelper {
 		this.driver = driver;
 	}
 
-	public void execute(String action, String data, String object) {
+	public void execute (String action, String data, String object) {
 		String strategy = "";
 		String locator = "";
 		//Object can be null for command like open url
@@ -36,7 +37,8 @@ public class WebDriverHelper {
             try{
                 locator  = object.split("=")[1];
             } catch (Exception e){
-                LOGGER.info("Could not find locator in Object: " + object);
+                String message = "Could not find locator in Object: " + object;
+                LOGGER.info(message);
             }
 		}
 		
@@ -50,6 +52,9 @@ public class WebDriverHelper {
 		}
 		
 		SeleniumCommandEnum COMMAND = SeleniumCommandEnum.getCommandEnum(action);
+        if(COMMAND == null ) {
+            throw new NoObjectDefinitionFound("Command not found" +action);
+        }
         takeWebdriverAction(data, element, COMMAND);
 
 	}
@@ -65,6 +70,8 @@ public class WebDriverHelper {
         case CLICK:
             element.click();
              return;
+            case VERIFYTEXT:
+              return;
         default:
             break;
         }

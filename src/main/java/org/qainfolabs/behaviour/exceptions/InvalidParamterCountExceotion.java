@@ -7,7 +7,7 @@ package org.qainfolabs.behaviour.exceptions;
  * Time: 16:50
  * To change this template use File | Settings | File Templates.
  */
-public class InvalidParamterCountExceotion extends Throwable {
+public class InvalidParamterCountExceotion extends RuntimeException {
     public InvalidParamterCountExceotion(String message) {
         super(message);
     }

@@ -52,14 +52,14 @@ public class ScenarioExecutor implements Runnable  {
                 }
             }catch (Exception e){
                 didScenarioFailed = true;
-                helper.closeBrowser();
+               helper.closeBrowser();
                 currentStep.setStatus("FAILED");
                 currentStep.setStackTrace(e.getStackTrace());
                 e.printStackTrace();
                 LOGGER.info(e.getMessage());
             }
 		}
-        helper.closeBrowser();
+//        helper.closeBrowser();
         String xml = new ReportGenerator().generateResultXml(scenarioReport);
         String fileName = scenario.getTitle().replaceAll(" ","")+".xml";
         LOGGER.info("File created " + FileWriterUtil.writeFile(fileName,xml));
