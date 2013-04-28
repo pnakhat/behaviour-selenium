@@ -1,4 +1,4 @@
-package org.qainfolabs.behaviour.executor;
+package org.qainfolabs.behaviour.model;
 
 import org.apache.log4j.Logger;
 

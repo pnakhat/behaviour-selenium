@@ -19,10 +19,12 @@ import org.qainfolabs.behaviour.webdriver.drivers.PropertyWebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+
 public class WebDriverHelper {
 
 	protected PropertyWebDriver driver;
     private static Logger LOGGER = Logger.getLogger(WebDriverHelper.class);
+
 
     public WebDriverHelper(PropertyWebDriver driver) {
 		this.driver = driver;
@@ -61,19 +63,19 @@ public class WebDriverHelper {
 
     private void takeWebdriverAction(String data, WebElement element, SeleniumCommandEnum COMMAND) {
         switch (COMMAND) {
-        case OPEN:
-            driver.get(data);
-            return ;
-        case SETTEXT:
-            element.sendKeys(data);
-            return;
-        case CLICK:
-            element.click();
-             return;
+            case OPEN:
+                driver.get(data);
+                return;
+            case SETTEXT:
+                element.sendKeys(data);
+                return;
+            case CLICK:
+                element.click();
+                return;
             case VERIFYTEXT:
-              return;
-        default:
-            break;
+                return;
+            default:
+                break;
         }
     }
 

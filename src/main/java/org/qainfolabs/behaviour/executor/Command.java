@@ -13,6 +13,9 @@ public class Command {
     private String data;
     private String object;
     private String[] stepArray;
+//
+//    @Autowired
+//    private WebDriverHelper helper;
 
     private static final Logger LOGGER = Logger.getLogger(Command.class);
 
@@ -57,7 +60,7 @@ public class Command {
     }
 
     public String getAction() {
-        return this.action;
+        return this.action.trim();
     }
 
     public String getData() {
@@ -65,7 +68,7 @@ public class Command {
     }
 
     public String getObject() {
-        return this.object;
+        return this.object.trim();
     }
 
 

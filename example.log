@@ -1,0 +1,79 @@
+2013-04-29 00:41:20,756 INFO main org.qainfolabs.behaviour.executor.Command - No object definition found in low level lowLeveStep -     open,http://www.etsy.com,
+2013-04-29 00:41:20,756 INFO main org.qainfolabs.behaviour.executor.Command - Decoding Step: -     open,http://www.etsy.com,.....................................
+2013-04-29 00:41:20,756 INFO main org.qainfolabs.behaviour.executor.Command - Action: open
+2013-04-29 00:41:20,756 INFO main org.qainfolabs.behaviour.executor.Command - Data http://www.etsy.com
+2013-04-29 00:41:20,756 INFO main org.qainfolabs.behaviour.executor.Command - UI Object 
+2013-04-29 00:41:20,756 INFO main org.qainfolabs.behaviour.executor.Command - Step Decoding finished...................................
+2013-04-29 00:41:20,757 INFO main org.qainfolabs.behaviour.webdriver.WebDriverHelper - Could not find locator in Object: 
+2013-04-29 00:41:21,966 INFO main org.qainfolabs.behaviour.executor.StepExecutor - Parameter value replaced : &data -> jeans shirt
+2013-04-29 00:41:21,966 INFO main org.qainfolabs.behaviour.executor.Command - Decoding Step: -     setText,&data,id=search-query.....................................
+2013-04-29 00:41:21,967 INFO main org.qainfolabs.behaviour.executor.Command - Action: setText
+2013-04-29 00:41:21,967 INFO main org.qainfolabs.behaviour.executor.Command - Data jeans shirt
+2013-04-29 00:41:21,967 INFO main org.qainfolabs.behaviour.executor.Command - UI Object id=search-query
+2013-04-29 00:41:21,967 INFO main org.qainfolabs.behaviour.executor.Command - Step Decoding finished...................................
+2013-04-29 00:41:22,079 INFO main org.qainfolabs.behaviour.executor.Command - Decoding Step: -     click,,id=search_submit.....................................
+2013-04-29 00:41:22,079 INFO main org.qainfolabs.behaviour.executor.Command - Action: click
+2013-04-29 00:41:22,080 INFO main org.qainfolabs.behaviour.executor.Command - Data 
+2013-04-29 00:41:22,080 INFO main org.qainfolabs.behaviour.executor.Command - UI Object id=search_submit
+2013-04-29 00:41:22,080 INFO main org.qainfolabs.behaviour.executor.Command - Step Decoding finished...................................
+2013-04-29 00:41:23,707 INFO main org.qainfolabs.behaviour.executor.StepExecutor - Parameter value replaced : &data1 -> apples
+2013-04-29 00:41:23,707 INFO main org.qainfolabs.behaviour.executor.Command - Decoding Step: -     setText,&data1,id=search-query.....................................
+2013-04-29 00:41:23,707 INFO main org.qainfolabs.behaviour.executor.Command - Action: setText
+2013-04-29 00:41:23,707 INFO main org.qainfolabs.behaviour.executor.Command - Data apples
+2013-04-29 00:41:23,707 INFO main org.qainfolabs.behaviour.executor.Command - UI Object id=search-query
+2013-04-29 00:41:23,707 INFO main org.qainfolabs.behaviour.executor.Command - Step Decoding finished...................................
+2013-04-29 00:41:23,783 INFO main org.qainfolabs.behaviour.model.Step - Then I verify that I did something
+2013-04-29 00:41:23,783 INFO main org.qainfolabs.behaviour.executor.ScenarioExecutor - Step to execute : Then I verify that I did something
+2013-04-29 00:41:23,783 INFO main org.qainfolabs.behaviour.model.Step - Then I verify that I did something
+2013-04-29 00:41:23,783 INFO main org.qainfolabs.behaviour.model.Step - Then I verify that I did something
+2013-04-29 00:41:23,785 INFO main org.qainfolabs.behaviour.model.Step - Then I verify that I did something
+2013-04-29 00:41:23,785 INFO main org.qainfolabs.behaviour.executor.StepExecutor - Low level lowLeveStep for lowLeveStep: 'Then I verify that I did something' is ->[org.qainfolabs.behaviour.executor.LowLevelStep@1c8321c8, org.qainfolabs.behaviour.executor.LowLevelStep@651ee017]
+2013-04-29 00:41:23,785 INFO main org.qainfolabs.behaviour.executor.Command - No object definition found in low level lowLeveStep - open,http://www.etsy.com,
+2013-04-29 00:41:23,785 INFO main org.qainfolabs.behaviour.executor.Command - Decoding Step: - open,http://www.etsy.com,.....................................
+2013-04-29 00:41:23,785 INFO main org.qainfolabs.behaviour.executor.Command - Action: open
+2013-04-29 00:41:23,785 INFO main org.qainfolabs.behaviour.executor.Command - Data http://www.etsy.com
+2013-04-29 00:41:23,785 INFO main org.qainfolabs.behaviour.executor.Command - UI Object 
+2013-04-29 00:41:23,785 INFO main org.qainfolabs.behaviour.executor.Command - Step Decoding finished...................................
+2013-04-29 00:41:23,785 INFO main org.qainfolabs.behaviour.webdriver.WebDriverHelper - Could not find locator in Object: 
+2013-04-29 00:41:24,599 INFO main org.qainfolabs.behaviour.executor.Command - No object definition found in low level lowLeveStep - verifyText1,vvvvvv,
+2013-04-29 00:41:24,599 INFO main org.qainfolabs.behaviour.executor.Command - Decoding Step: - verifyText1,vvvvvv,.....................................
+2013-04-29 00:41:24,599 INFO main org.qainfolabs.behaviour.executor.Command - Action: verifyText1
+2013-04-29 00:41:24,600 INFO main org.qainfolabs.behaviour.executor.Command - Data vvvvvv
+2013-04-29 00:41:24,600 INFO main org.qainfolabs.behaviour.executor.Command - UI Object 
+2013-04-29 00:41:24,600 INFO main org.qainfolabs.behaviour.executor.Command - Step Decoding finished...................................
+2013-04-29 00:41:24,600 INFO main org.qainfolabs.behaviour.webdriver.WebDriverHelper - Could not find locator in Object: 
+2013-04-29 00:41:24,619 INFO main org.qainfolabs.behaviour.executor.ScenarioExecutor - Command not foundverifyText1
+2013-04-29 00:41:24,626 INFO main org.qainfolabs.behaviour.executor.ScenarioExecutor - File created Scenario2.xml
+2013-04-29 00:41:24,626 INFO main org.qainfolabs.behaviour.executor.ScenarioExecutor - {"Scenario": {
+  "@scenarioName": "Scenario: 2",
+  "steps": [
+    {
+      "@stepName": "Scenario: 2",
+      "status": "PASSED"
+    },
+    {
+      "@stepName": "Given I search for 'jeans shirt' and find 'apples'",
+      "status": "PASSED"
+    },
+    {
+      "@stepName": "Then I verify that I did something",
+      "status": "FAILED",
+      "stackTrace": [
+        "org.qainfolabs.behaviour.webdriver.WebDriverHelper.execute(WebDriverHelper.java:58)",
+        "org.qainfolabs.behaviour.executor.Command.exeute(Command.java:82)",
+        "org.qainfolabs.behaviour.executor.StepExecutor.takeActionOnSteps(StepExecutor.java:73)",
+        "org.qainfolabs.behaviour.executor.StepExecutor.compileAndExecuteStep(StepExecutor.java:47)",
+        "org.qainfolabs.behaviour.executor.StepExecutor.executeStep(StepExecutor.java:31)",
+        "org.qainfolabs.behaviour.executor.ScenarioExecutor.executeScenario(ScenarioExecutor.java:50)",
+        "org.qainfolabs.behaviour.executor.App.executeStories(App.java:50)",
+        "org.qainfolabs.behaviour.executor.App.runTests(App.java:29)",
+        "org.qainfolabs.behaviour.executor.App.main(App.java:23)",
+        "sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)",
+        "sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)",
+        "sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)",
+        "java.lang.reflect.Method.invoke(Method.java:597)",
+        "com.intellij.rt.execution.application.AppMain.main(AppMain.java:120)"
+      ]
+    }
+  ]
+}}

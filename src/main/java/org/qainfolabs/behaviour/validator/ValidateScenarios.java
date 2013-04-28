@@ -7,20 +7,14 @@ import org.qainfolabs.behaviour.selenium.utils.ReadFileInBuffer;
 import java.io.*;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: pankajnakhat
- * Date: 02/03/2013
- * Time: 19:22
- * To change this template use File | Settings | File Templates.
- */
+
 public class ValidateScenarios {
 
     private File story;
     private final List<String> allContent;
 
     public ValidateScenarios(File story) throws IOException {
-       this.story = story;
+        this.story = story;
         FileInputStream fs = new FileInputStream(story);
         allContent = IOUtils.readLines(fs);
     }
@@ -29,20 +23,27 @@ public class ValidateScenarios {
 
 
         for (String line : allContent) {
+            int currentLine = allContent.indexOf(line);
+            int scenarioStartLine = 0;
+
+
             boolean foundScenarioStart = false;
-            if (StringUtils.startsWithIgnoreCase(line,"Scenario:")) {
+            if (StringUtils.startsWithIgnoreCase(line, "Scenario:")) {
                 foundScenarioStart = true;
+                scenarioStartLine = allContent.indexOf(line);
             }
 
-            if (foundScenarioStart && StringUtils.startsWithIgnoreCase(line,"Scenario")) {
-                  throw new IllegalArgumentException("Scenario doesnt have end scenario" + line);
+            if (StringUtils.startsWithIgnoreCase(line, "End Scenario:")) {
+                foundScenarioStart = false;
             }
 
-            if (!foundScenarioStart && StringUtils.startsWithIgnoreCase(line,"Scenario")) {
-                throw new IllegalArgumentException("Scenario doesnt have end scenario" + line + allContent.indexOf(line));
+            if ((scenarioStartLine != currentLine) && foundScenarioStart && StringUtils.startsWithIgnoreCase(line, "Scenario")) {
+                throw new IllegalArgumentException("Scenario doesn't have end scenario: " + line + ":Line " + currentLine);
             }
 
-
+            if (!foundScenarioStart && StringUtils.startsWithIgnoreCase(line, "End Scenario")) {
+                throw new IllegalArgumentException("Scenario doesn't have start scenario: " + line + " :at line number: " + currentLine);
+            }
 
         }
 

@@ -1,9 +1,7 @@
 package org.qainfolabs.behaviour.reporting;
 
-import com.thoughtworks.xstream.XStream;
-import org.qainfolabs.behaviour.executor.Step;
+import org.qainfolabs.behaviour.model.Step;
 
-import javax.xml.stream.XMLStreamConstants;
 import java.util.ArrayList;
 import java.util.List;
 

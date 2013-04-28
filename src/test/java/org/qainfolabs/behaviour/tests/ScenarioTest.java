@@ -2,12 +2,12 @@ package org.qainfolabs.behaviour.tests;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.qainfolabs.behaviour.executor.Scenario;
-import org.qainfolabs.behaviour.executor.Step;
-import org.qainfolabs.behaviour.selenium.utils.StoryReader;
+import org.qainfolabs.behaviour.model.Feature;
+import org.qainfolabs.behaviour.model.Scenario;
+import org.qainfolabs.behaviour.model.Step;
+import org.qainfolabs.behaviour.selenium.utils.FeatureReader;
 import org.qainfolabs.behaviour.selenium.utils.ScenarioExtractor;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,20 +48,20 @@ public class ScenarioTest {
 	//test to determine number of files in current path
 	@Test
 	public void testScenarioExtractor(){		
-		StoryReader oStoryReader = new StoryReader("src/test/java/org/qainfolabs/tests/core/resource/");
-		List<File> testScenario = oStoryReader.getAllStories();
+		FeatureReader oFeatureReader = new FeatureReader("src/test/java/org/qainfolabs/tests/core/resource/");
+		List<Feature> testScenario = oFeatureReader.getAllFeatures();
 		Assert.assertEquals(testScenario.size(), 1);
 	}
-	
-	//test to determine number of scenarios in a file
-		@Test
-		public void testScenarioCount() throws IOException{		
-			StoryReader oStoryReader = new StoryReader("src/test/java/org/qainfolabs/tests/core/resource");
-			ScenarioExtractor oSextractor = new ScenarioExtractor();
-			List<File> allStories = oStoryReader.getAllStories();	
-			List<Scenario> scenarios = oSextractor.getAllScenarios(allStories.get(0));
-			Assert.assertEquals(scenarios.size(), 2);
-			Assert.assertEquals("AA",scenarios.get(0).getTitle(), "Scenario:");
-		}
-	
+
+    //test to determine number of scenarios in a file
+    @Test
+    public void testScenarioCount() throws IOException {
+        FeatureReader oFeatureReader = new FeatureReader("src/test/java/org/qainfolabs/tests/core/resource");
+        ScenarioExtractor oSextractor = new ScenarioExtractor();
+        List<Feature> allStories = oFeatureReader.getAllFeatures();
+        List<Scenario> scenarios = allStories.get(0).getAllScenarios();
+        Assert.assertEquals(scenarios.size(), 3);
+        Assert.assertEquals("AA", scenarios.get(0).getTitle(), "Scenario:");
+    }
+
 }

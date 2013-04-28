@@ -1,6 +1,8 @@
 package org.qainfolabs.behaviour.executor;
 
 import org.apache.log4j.Logger;
+import org.qainfolabs.behaviour.model.Scenario;
+import org.qainfolabs.behaviour.model.Step;
 import org.qainfolabs.behaviour.reporting.ReportGenerator;
 import org.qainfolabs.behaviour.reporting.ScenarioReportSchema;
 import org.qainfolabs.behaviour.utils.FileWriterUtil;
@@ -13,7 +15,7 @@ import java.util.Iterator;
 
 @Component
 @Scope("prototype")
-public class ScenarioExecutor implements Runnable  {
+public class ScenarioExecutor implements Runnable {
 	
 	private Scenario scenario;
 	private static Logger LOGGER  = Logger.getLogger(ScenarioExecutor.class);

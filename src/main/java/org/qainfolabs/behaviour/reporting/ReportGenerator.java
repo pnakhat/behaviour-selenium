@@ -2,7 +2,7 @@ package org.qainfolabs.behaviour.reporting;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.json.JsonHierarchicalStreamDriver;
-import org.qainfolabs.behaviour.executor.Step;
+import org.qainfolabs.behaviour.model.Step;
 
 public class ReportGenerator {
     public String generateResultXml(ScenarioReportSchema scenarioReport) {

@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.qainfolabs.behaviour.exceptions.NoLowLevelStepExists;
+import org.qainfolabs.behaviour.model.Step;
 import org.qainfolabs.behaviour.selenium.utils.LowLevelDefinition;
 import org.qainfolabs.behaviour.webdriver.WebDriverHelper;
 import org.springframework.beans.factory.annotation.Autowired;

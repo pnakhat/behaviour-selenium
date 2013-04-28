@@ -1,7 +1,7 @@
 package org.qainfolabs.behaviour.tests;
 
 import org.qainfolabs.behaviour.executor.LowLevelStep;
-import org.qainfolabs.behaviour.executor.Step;
+import org.qainfolabs.behaviour.model.Step;
 import org.qainfolabs.behaviour.selenium.utils.LowLevelDefinition;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -104,6 +104,7 @@ public class StepTest {
        lowLevelDefinition = new LowLevelDefinition("Given I search for 'jeans' and find 'shirts'");
        HashMap<String, String> params = lowLevelDefinition.getDefinitionOfStep(new File("src/test/resources/stepDefTest.def")).getStepParameterMap();
        Assert.assertEquals(params.size(),2 );
+       Assert.assertEquals(params.entrySet().toString(), "[&data=jeans, &data1=shirts]");
 
     }
 

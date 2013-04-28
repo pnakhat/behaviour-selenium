@@ -1,15 +1,15 @@
 Match "Given I search for '&data' and find '&data1'"
-open,http://www.etsy.com,
-setText,&data,id=search-query
-click,,id=search_submit
-setText,&data1,id=search-query
+    open,http://www.etsy.com,
+    setText,&data,id=search-query
+    click,,id=search_submit
+    setText,&data1,id=search-query
 End Match
 
 
 Match "Given I do something"
-open,http://www.etsy.com,
-setText,Jeans,id=search-query
-click,,id=search_submit
+    open,http://www.etsy.com,
+    setText,Jeans,id=search-query
+    click,,id=search_submit
 End Match
 
 
