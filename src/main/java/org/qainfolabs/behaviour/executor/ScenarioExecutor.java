@@ -1,6 +1,9 @@
 package org.qainfolabs.behaviour.executor;
 
 import org.apache.log4j.Logger;
+import org.junit.internal.runners.model.EachTestNotifier;
+import org.junit.runner.Description;
+import org.junit.runner.notification.RunNotifier;
 import org.qainfolabs.behaviour.model.Scenario;
 import org.qainfolabs.behaviour.model.Step;
 import org.qainfolabs.behaviour.reporting.ReportGenerator;
@@ -16,11 +19,11 @@ import java.util.Iterator;
 @Component
 @Scope("prototype")
 public class ScenarioExecutor implements Runnable {
-	
-	private Scenario scenario;
-	private static Logger LOGGER  = Logger.getLogger(ScenarioExecutor.class);
+
+    private Scenario scenario;
+    private static Logger LOGGER = Logger.getLogger(ScenarioExecutor.class);
     @Autowired
-	public WebDriverHelper helper;
+    public WebDriverHelper helper;
     private ScenarioReportSchema scenarioReport;
     private String featureFileName;
     @Autowired
@@ -35,42 +38,52 @@ public class ScenarioExecutor implements Runnable {
         return this;
     }
 
-    public void executeScenario() {
+    public void executeScenario(RunNotifier runNotifier) {
 
-        String path = "src/main/scenarios/" + "stepDef_"+featureFileName;
-		Iterator<Step> steps = scenario.allSteps().iterator();
-		while(steps.hasNext()){
+        String path = "src/main/scenarios/" + "stepDef_" + featureFileName;
+        Iterator<Step> steps = scenario.allSteps().iterator();
+        while (steps.hasNext()) {
             Step currentStep = steps.next();
-			String stepToExecute = currentStep.getStepName();
-            scenarioReport.setStep(currentStep);
-            try{
 
-                if(!didScenarioFailed) {
-                    LOGGER.info("Step to execute : " + stepToExecute) ;
+            EachTestNotifier eachTestNotifier = new EachTestNotifier(runNotifier, Description.createSuiteDescription(currentStep.getStepName()));
+            eachTestNotifier.fireTestStarted();
+
+
+            String stepToExecute = currentStep.getStepName();
+            scenarioReport.setStep(currentStep);
+            try {
+                if (!didScenarioFailed) {
+
+                    LOGGER.info("Step to execute : " + stepToExecute);
                     stepExecutor.executeStep(currentStep);
                     currentStep.setStatus("PASSED");
                 } else {
                     currentStep.setStatus("SKIPPED");
                 }
-            }catch (Exception e){
+                eachTestNotifier.fireTestFinished();
+            } catch (Exception e) {
                 didScenarioFailed = true;
-               helper.closeBrowser();
+                helper.closeBrowser();
                 currentStep.setStatus("FAILED");
                 currentStep.setStackTrace(e.getStackTrace());
                 e.printStackTrace();
+                eachTestNotifier.addFailure(e);
                 LOGGER.info(e.getMessage());
+                eachTestNotifier.fireTestFinished();
+
             }
-		}
+        }
+
 //        helper.closeBrowser();
         String xml = new ReportGenerator().generateResultXml(scenarioReport);
-        String fileName = scenario.getTitle().replaceAll(" ","")+".xml";
-        LOGGER.info("File created " + FileWriterUtil.writeFile(fileName,xml));
+        String fileName = scenario.getTitle().replaceAll(" ", "") + ".xml";
+        LOGGER.info("File created " + FileWriterUtil.writeFile(fileName, xml));
         LOGGER.info(xml);
-	}
+    }
 
     public void run() {
-		executeScenario();
-	}
+//		executeScenario(runNotifier);
+    }
 
     public ScenarioExecutor setScenario(Scenario scenario) {
         this.scenario = scenario;

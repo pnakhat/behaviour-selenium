@@ -1,7 +1,6 @@
 package org.qainfolabs.behaviour.executor;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -47,7 +46,7 @@ public class App {
 
                 ScenarioExecutor scenarioExecutor = (ScenarioExecutor) ctx.getBean(ScenarioExecutor.class);
                 scenarioExecutor.setScenario(scenario).init();
-                scenarioExecutor.executeScenario();
+//                scenarioExecutor.executeScenario(runNotifier);
             }
 
         }

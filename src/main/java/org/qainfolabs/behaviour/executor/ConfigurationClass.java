@@ -39,21 +39,21 @@ public class ConfigurationClass {
         return new WebDriverHelper(propertyWebDriver);
     }
 
-    @Bean
-    @Lazy
-    @Scope("prototype")
+//    @Bean
+//    @Lazy
+//    @Scope("prototype")
+//
+//    public StepExecutor getStepExecutor() {
+//        return new StepExecutor();
+//    }
 
-    public StepExecutor getStepExecutor() {
-        return new StepExecutor();
-    }
-
-
-    @Bean
-    @Lazy
-    @Scope("prototype")
-    public ScenarioExecutor scenarioExecutor() {
-        return new ScenarioExecutor();
-    }
+//
+//    @Bean
+//    @Lazy
+//    @Scope("prototype")
+//    public ScenarioExecutor scenarioExecutor() {
+//        return new ScenarioExecutor();
+//    }
 
 
 
