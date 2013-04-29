@@ -1,9 +1,10 @@
-package org.qainfolabs.behaviour.executor;
+package org.qainfolabs.behaviour.junit;
 
 import org.junit.runner.Description;
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.ParentRunner;
 import org.junit.runners.model.InitializationError;
+import org.qainfolabs.behaviour.junit.StepExecutor;
 import org.qainfolabs.behaviour.model.Step;
 import org.springframework.beans.factory.annotation.Autowired;
 

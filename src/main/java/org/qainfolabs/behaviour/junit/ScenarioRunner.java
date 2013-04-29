@@ -1,11 +1,11 @@
-package org.qainfolabs.behaviour.executor;
+package org.qainfolabs.behaviour.junit;
 
 import org.apache.log4j.PropertyConfigurator;
-import org.junit.internal.runners.model.EachTestNotifier;
 import org.junit.runner.Description;
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.ParentRunner;
 import org.junit.runners.model.InitializationError;
+import org.qainfolabs.behaviour.executor.ScenarioExecutor;
 import org.qainfolabs.behaviour.model.Scenario;
 import org.qainfolabs.behaviour.model.Step;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -55,16 +55,9 @@ public class ScenarioRunner extends ParentRunner<Step> {
     public void run(RunNotifier runNotifier) {
         PropertyConfigurator.configure("log4j.properties");
         AnnotationConfigApplicationContext ctx = getAnnotationConfigApplicationContext();
-//        EachTestNotifier eachTestNotifier = new EachTestNotifier(runNotifier, getDescription());
-//        eachTestNotifier.fireTestStarted();
         ScenarioExecutor scenarioExecutor = (ScenarioExecutor) ctx.getBean(ScenarioExecutor.class);
         scenarioExecutor.setScenario(scenario).init();
         scenarioExecutor.executeScenario(runNotifier);
-
-//        scenarioExecutor.run();
-//        scenario.run();
-//        eachTestNotifier.fireTestFinished();
-//        super.run(runNotifier);
     }
 
     private static AnnotationConfigApplicationContext getAnnotationConfigApplicationContext() {

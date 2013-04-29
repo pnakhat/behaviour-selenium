@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.junit.internal.runners.model.EachTestNotifier;
 import org.junit.runner.Description;
 import org.junit.runner.notification.RunNotifier;
+import org.qainfolabs.behaviour.junit.StepExecutor;
 import org.qainfolabs.behaviour.model.Scenario;
 import org.qainfolabs.behaviour.model.Step;
 import org.qainfolabs.behaviour.reporting.ReportGenerator;
@@ -74,7 +75,7 @@ public class ScenarioExecutor implements Runnable {
             }
         }
 
-//        helper.closeBrowser();
+        helper.closeBrowser();
         String xml = new ReportGenerator().generateResultXml(scenarioReport);
         String fileName = scenario.getTitle().replaceAll(" ", "") + ".xml";
         LOGGER.info("File created " + FileWriterUtil.writeFile(fileName, xml));

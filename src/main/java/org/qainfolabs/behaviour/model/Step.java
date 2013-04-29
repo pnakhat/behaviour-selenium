@@ -1,7 +1,7 @@
 package org.qainfolabs.behaviour.model;
 
 import org.apache.log4j.Logger;
-import org.qainfolabs.behaviour.executor.StepExecutor;
+import org.qainfolabs.behaviour.junit.StepExecutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

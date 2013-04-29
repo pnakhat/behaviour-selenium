@@ -1,9 +1,10 @@
-package org.qainfolabs.behaviour.executor;
+package org.qainfolabs.behaviour.junit;
 
 import org.junit.runner.Description;
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.ParentRunner;
 import org.junit.runners.model.InitializationError;
+import org.qainfolabs.behaviour.junit.FeatureRunner;
 import org.qainfolabs.behaviour.model.Feature;
 import org.qainfolabs.behaviour.selenium.utils.FeatureReader;
 
@@ -22,7 +23,7 @@ public class BehaviourSeleniumRunner extends ParentRunner<FeatureRunner> {
 
     @Override
     protected List<FeatureRunner> getChildren() {
-        return children;  //To change body of implemented methods use File | Settings | File Templates.
+        return children;
     }
 
     @Override

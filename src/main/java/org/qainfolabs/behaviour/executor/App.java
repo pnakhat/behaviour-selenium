@@ -46,7 +46,7 @@ public class App {
 
                 ScenarioExecutor scenarioExecutor = (ScenarioExecutor) ctx.getBean(ScenarioExecutor.class);
                 scenarioExecutor.setScenario(scenario).init();
-//                scenarioExecutor.executeScenario(runNotifier);
+//               scenarioExecutor.executeScenario(runNotifier);
             }
 
         }

@@ -1,5 +1,6 @@
 package org.qainfolabs.behaviour.model;
 
+import org.apache.commons.lang.StringUtils;
 import org.qainfolabs.behaviour.selenium.utils.ReadFileInBuffer;
 
 import java.io.BufferedReader;
@@ -10,6 +11,7 @@ import java.util.List;
 
 public class Feature {
     private File file;
+    private String featureTitle;
 
     public Feature(File file) {
         this.file = file;
@@ -17,13 +19,18 @@ public class Feature {
 
     public List<Scenario> getAllScenarios() {
         BufferedReader bf = getBufferedReader(getFile());
-        String line;
+        String step;
         List<Step> scenarioSteps = null;
         List<Scenario> scenarios = new ArrayList<Scenario>();
         Scenario scn = null;
         boolean foundScenarioStart = false;
         try {
-            while ((line = bf.readLine()) != null) {
+            while ((step = bf.readLine()) != null) {
+                String line = StringUtils.trim(step);
+                if(line.startsWith("Feature:")) {
+                    featureTitle = line;
+                }
+
                 if (line.startsWith("Scenario")) {
                     foundScenarioStart = true;
                     scn = new Scenario();
@@ -38,7 +45,7 @@ public class Feature {
                     foundScenarioStart = false;
                 }
 
-                if (foundScenarioStart) {
+                if (foundScenarioStart && !(line.contains("Scenario:"))) {
                     scenarioSteps.add(new Step(line));
                 }
 
@@ -61,7 +68,7 @@ public class Feature {
 
 
     public String getFeatureTitle() {
-        return "Feature: Login";
+        return featureTitle;
     }
 
     private File getFile() {

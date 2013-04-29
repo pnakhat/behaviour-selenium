@@ -1,4 +1,4 @@
-package org.qainfolabs.behaviour.executor;
+package org.qainfolabs.behaviour.junit;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,11 +8,12 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.qainfolabs.behaviour.exceptions.NoLowLevelStepExists;
+import org.qainfolabs.behaviour.executor.CommandExecutor;
+import org.qainfolabs.behaviour.executor.LowLevelStep;
 import org.qainfolabs.behaviour.model.Step;
 import org.qainfolabs.behaviour.selenium.utils.LowLevelDefinition;
 import org.qainfolabs.behaviour.webdriver.WebDriverHelper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 

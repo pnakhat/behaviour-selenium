@@ -25,6 +25,7 @@ public class ValidateScenarios {
         for (String line : allContent) {
             int currentLine = allContent.indexOf(line);
             int scenarioStartLine = 0;
+            int scenarioEndLine = 0;
 
 
             boolean foundScenarioStart = false;
@@ -34,14 +35,16 @@ public class ValidateScenarios {
             }
 
             if (StringUtils.startsWithIgnoreCase(line, "End Scenario:")) {
+
                 foundScenarioStart = false;
+                scenarioEndLine =  allContent.indexOf(line);
             }
 
             if ((scenarioStartLine != currentLine) && foundScenarioStart && StringUtils.startsWithIgnoreCase(line, "Scenario")) {
-                throw new IllegalArgumentException("Scenario doesn't have end scenario: " + line + ":Line " + currentLine);
+                throw new IllegalArgumentException("Scenario doesn't have end scenario: [ " + line + "]:Line " + currentLine);
             }
 
-            if (!foundScenarioStart && StringUtils.startsWithIgnoreCase(line, "End Scenario")) {
+            if (!foundScenarioStart && (scenarioEndLine != currentLine) && StringUtils.startsWithIgnoreCase(line, "End Scenario")) {
                 throw new IllegalArgumentException("Scenario doesn't have start scenario: " + line + " :at line number: " + currentLine);
             }
 

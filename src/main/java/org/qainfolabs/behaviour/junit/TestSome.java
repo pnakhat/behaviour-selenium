@@ -1,4 +1,4 @@
-package org.qainfolabs.behaviour.executor;
+package org.qainfolabs.behaviour.junit;
 
 import org.junit.runner.RunWith;
 
